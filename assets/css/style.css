@@ -1,0 +1,201 @@
+/*
+  BASE
+*/
+/* USAGE:
+  .parent {
+    .child {
+      @include adjust-form-siblings-count;
+    }
+  }
+*/
+/*
+  Defined, resuable variables for this build
+*/
+/*
+  Measurements
+ */
+/* Baseline is used for calculating all measurements */
+/* This ensures consistency across the build */
+/*
+  Colors
+*/
+/* replace the first number in the HSB with your Brand's color */
+/* Replace the last digits with the corresponding digits from the Brand color */
+/*
+   Fonts
+*/
+/* Face Stack/Family */
+/* Sizes */
+/* Calculate line-heights */
+/* Font Colors */
+/* Transition Easings */
+/* Transition Speeds */
+/*
+  Just for fun, here's a link to Donovan Hutchinson's CSS Animations for all 12 of the 'Disney Principles'
+  http://codepen.io/collection/AxKOdY/3/
+*/
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%; }
+  html * {
+    box-sizing: border-box !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; }
+  html body {
+    margin: 0; }
+
+/*
+  TYPOGRAPHY
+*/
+.tony {
+  font-family: serif;
+  font-size: 16px;
+  font-smooth: auto;
+  font-size-adjust: none;
+  font-variant: normal;
+  font-kerning: none;
+  font-variant-ligatures: none;
+  font-weight: 900;
+  font-style: normal; }
+
+.silvio {
+  font-family: serif;
+  font-size: 16px;
+  font-smooth: auto;
+  font-size-adjust: none;
+  font-variant: normal;
+  font-kerning: none;
+  font-variant-ligatures: none;
+  font-weight: 900;
+  font-style: normal; }
+
+.paulie {
+  font-family: serif;
+  font-size: 16px;
+  font-smooth: auto;
+  font-size-adjust: none;
+  font-variant: normal;
+  font-kerning: none;
+  font-variant-ligatures: none;
+  font-weight: 900;
+  font-style: normal; }
+
+.chris {
+  font-family: serif;
+  font-size: 16px;
+  font-smooth: auto;
+  font-size-adjust: none;
+  font-variant: normal;
+  font-kerning: none;
+  font-variant-ligatures: none;
+  font-weight: 900;
+  font-style: normal; }
+
+.ralphie {
+  font-family: serif;
+  font-size: 16px;
+  font-smooth: auto;
+  font-size-adjust: none;
+  font-variant: normal;
+  font-kerning: none;
+  font-variant-ligatures: none;
+  font-weight: 900;
+  font-style: normal; }
+
+.richie {
+  font-family: serif;
+  font-size: 16px;
+  font-smooth: auto;
+  font-size-adjust: none;
+  font-variant: normal;
+  font-kerning: none;
+  font-variant-ligatures: none;
+  font-weight: 900;
+  font-style: normal; }
+
+.bobby {
+  font-family: serif;
+  font-size: 16px;
+  font-smooth: auto;
+  font-size-adjust: none;
+  font-variant: normal;
+  font-kerning: none;
+  font-variant-ligatures: none;
+  font-weight: 900;
+  font-style: normal; }
+
+.junior {
+  font-family: serif;
+  font-size: 16px;
+  font-smooth: auto;
+  font-size-adjust: none;
+  font-variant: normal;
+  font-kerning: none;
+  font-variant-ligatures: none;
+  font-weight: 900;
+  font-style: normal; }
+
+::-moz-selection,
+::selection {
+  color: #f7fbfc;
+  background: #19191a; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  display: block;
+  padding: 0;
+  margin: 0;
+  color: #f00; }
+
+b, strong {
+  font-weight: bold; }
+
+i, em {
+  font-style: italic; }
+
+p {
+  display: block;
+  padding: 0;
+  margin: 0; }
+
+/*
+  ELEMENTS
+*/
+/*------------------------------------*  #BUTTON--NORMALISE
+\*------------------------------------*/
+/*
+  Buttons are to be used when the result of the interaction occurs on the same page.
+  Buttons should not be used for page links or submitting a form _to a different page_
+*/
+button, form input[type="submit"], form input[type="reset"], form input[type="button"] {
+  -webkit-appearance: none;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
+  border: none;
+  padding: 40px; }
+
+button::-moz-focus-inner, form input[type="submit"]::-moz-focus-inner, form input[type="reset"]::-moz-focus-inner, form input[type="button"]::-moz-focus-inner,
+input::-moz-focus-inner,
+select::-moz-focus-inner,
+textarea::-moz-focus-inner {
+  border: 0; }
+
+button:focus, form input[type="submit"]:focus, form input[type="reset"]:focus, form input[type="button"]:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 0; }
+
+.button--alert {
+  background: #f80;
+  padding: 20px; }
+
+form input,
+form select,
+form textarea {
+  -webkit-appearance: none; }

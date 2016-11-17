@@ -1,0 +1,9 @@
+# ignore production build
+  # This can always be compiled from the src file using gulp
+assets/**
+
+# ignore node/npm modules
+dev/node_modules/**
+
+# ignore Mac placement files
+**/.DS_Store

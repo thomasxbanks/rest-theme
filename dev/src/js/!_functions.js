@@ -42,6 +42,7 @@ function disableButton(target) {
     jQuery(target).prop('disabled', true)
 }
 
+
 // These are the functions that run when each page is loaded
 function LoadFunc() {
     browserSize() // Work out browser width and browser height and store as global variables for use later
@@ -65,4 +66,21 @@ function LoadFunc() {
     // @TODO: Remove the below line for production
     jQuery('#masthead h1').html(WURFL.complete_device_name)
 
+    jQuery('#rest-container').masonry({
+        // options
+        itemSelector: '.post-card',
+        columnWidth: 320
+    })
+
+}
+
+function returnButtons() {
+    jQuery('#load-prev').text('Previous')
+    jQuery('#load-next').text('Next')
+}
+
+function toTitleCase(str) {
+    return str.replace(/\w\S*/g, function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+    })
 }

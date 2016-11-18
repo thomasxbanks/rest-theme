@@ -14,9 +14,12 @@ $b: $baseline;
 /*
   Colors
 */
+
+$clr_brand: hsb(0, 100, 50);
+
 /* replace the first number in the HSB with your Brand's color */
-$clr_black: hsb(200, 02, 10);
-$clr_white: hsb(200, 02, 99);
+$clr_black: hsb(0, 2, 10);
+$clr_white: #fff;
 
 /* Replace the last digits with the corresponding digits from the Brand color */
 $clr_error: hsb(0, 100, 50);
@@ -28,8 +31,9 @@ $clr_warning: hsb(30, 100, 50);
    Fonts
 */
 /* Face Stack/Family */
-$font_face-main: Arial, "Helvetica Neue", Helvetica, sans-serif;
-$font_face-accent: "Times New Roman", Times, Baskerville, Georgia, serif;
+
+  $font_face-main: "Open Sans", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  $font_face-accent: "Oswald", "Times New Roman", Times, Baskerville, Georgia, serif;
 
 /* Sizes */
 $font_size-xsm: ($b * 1);
@@ -49,6 +53,7 @@ $font_color-invert: $clr_white;
 /* Transition Easings */
 $ease-main: cubic-bezier(.66,.04,.51,.92);
 $ease-swoosh: cubic-bezier(.53,-0.4,.81,1.46);
+$ease-bounce: cubic-bezier(.64,-0.43,.43,1.38);
 
 /* Transition Speeds */
 $speed-fastest: 100ms;

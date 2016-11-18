@@ -4,7 +4,11 @@
 jQuery(document).ready(function($) {
     LoadFunc() // Run the load page functions
 
-    $('body').litebochs()
+
+    jQuery('button[id^="load-"]').on('click', function(){
+      let target = jQuery(this).data('page')
+      loadPosts(target)
+    })
 
     // Events to trigger on window scroll
     var currentScroll = 0;

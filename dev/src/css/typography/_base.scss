@@ -1,6 +1,6 @@
 .tony {
-  font-family: serif;
-  font-size: $font_size-std;
+  font-family: $font_face-accent;
+  font-size: $font_size-lrg;
   font-smooth: auto;
   font-size-adjust: none;
   font-variant: normal;
@@ -11,7 +11,7 @@
 }
 
 .silvio {
-  font-family: serif;
+  font-family: $font_face-main;
   font-size: $font_size-std;
   font-smooth: auto;
   font-size-adjust: none;

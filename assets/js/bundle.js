@@ -130,6 +130,7 @@ function disableButton(target) {
     jQuery(target).prop('disabled', true)
 }
 
+
 // These are the functions that run when each page is loaded
 function LoadFunc() {
     browserSize() // Work out browser width and browser height and store as global variables for use later
@@ -153,178 +154,126 @@ function LoadFunc() {
     // @TODO: Remove the below line for production
     jQuery('#masthead h1').html(WURFL.complete_device_name)
 
+    jQuery('#rest-container').masonry({
+        // options
+        itemSelector: '.post-card',
+        columnWidth: 320
+    })
+
 }
 
-"use strict"
-
-function isRequired(currentTarget) {
-    if (jQuery(currentTarget).prop('required')) {
-        return true
-    } else {
-        return false
-    }
+function returnButtons() {
+    jQuery('#load-prev').text('Previous')
+    jQuery('#load-next').text('Next')
 }
 
-function isEmpty(currentTarget) {;
-    if (jQuery(currentTarget).val() == '') {
-        return true
-    } else {
-        return false
-    }
-}
-
-function isEmail(currentTarget) {
-    if (/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i.test(jQuery(currentTarget).val())) {
-        console.log('this is an email address')
-        return true
-    } else {
-        console.log('this is not an email address')
-        return false
-    }
-}
-
-function isNumber(currentTarget) {
-    if (isNaN(jQuery(currentTarget).val())) {
-        return false
-    } else {
-        return true
-    }
-}
-
-function isPhoneNumber(currentTarget) {
-    var userValue = jQuery(currentTarget).val()
-    if (/^[0-9 +()]+$/.test(userValue)) {
-        return true
-    } else {
-        return false
-    }
-}
-
-function isFile(currentTarget) {
-    var file = jQuery(currentTarget).val()
-    var ext = file.substr((file.lastIndexOf('.') + 1))
-    switch (ext) {
-        case 'jpg':
-        case 'jpeg':
-        case 'png':
-        case 'gif':
-            return true
-            break;
-        default:
-            jQuery(currentTarget).val("")
-            return false
-    }
-}
-
-function isFormValid() {
-    var invalidFields = []
-    jQuery('.not-valid').each(function(i, obj) {
-        // Add each not-valid field to the array
-        invalidFields.push(obj)
-
-        // log for debug
-        console.log(invalidFields, invalidFields.length)
-
-        // If there is one or more entry in the array, throw a fit
-        if (invalidFields.length > 0) {
-            return false
-        } else {
-            return true
-        }
+function toTitleCase(str) {
+    return str.replace(/\w\S*/g, function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
     })
 }
 
-function makeDirty(currentTarget) {
-    jQuery(currentTarget)
-        .removeClass('pristine')
-        .addClass('dirty')
+let url = "//wordpress-rest/wp-json/wp/v2/posts?"
+
+function PostTemplate(post) {
+    // Log for Debug
+    //console.log(post)
+    // Create variables for all the bits you need
+    let hero = post._embedded["wp:featuredmedia"]["0"].source_url
+    let title = post.title.rendered
+    let content = post.excerpt.rendered || post.content.rendered
+    let id = post.id
+    let permalink = post.link
+    let datePost = moment(post.date).format('Do MMMM YYYY')
+    let dateUTC = post.date
+
+    // Create the HTML to inject
+    let postCard = "<article class='post-card shrink'><figure><img src='" + hero + "' alt='" + title + "' /></figure><header><h1>" + title + "</h1><time datetime='" + dateUTC + "'>" + datePost + "</time></header><div class='post-content'>" + content + "</div><footer><a class='button' href='" + permalink + "'>Read more</a></footer></article>"
+
+    // Inject it!
+    jQuery('main').append(postCard)
 }
 
-function makeValid(currentTarget) {
-    jQuery(currentTarget)
-        .removeClass('not-valid')
-        .addClass('is-valid')
+function ActiveNavItem(id) {
+    jQuery('.post-filter').removeClass('is-active')
+    jQuery('#' + id).addClass('is-active')
 }
 
-function makeInvalid(currentTarget) {
-    jQuery(currentTarget)
-        .removeClass('is-valid')
-        .addClass('not-valid')
-}
-
-// Write given error message to current error message container
-function printError(currentTarget, msg) {
-    // Find the error message span following the current input
-    var currentError = jQuery(currentTarget)[0].nextSibling.nextSibling
-
-    // log for debug
-    console.error(msg)
-
-    jQuery(currentError).text(msg)
-}
-
-jQuery('form').on('submit', function(e) {
-    e.preventDefault;
-    if (isFormValid()) {
-        jQuery('form').submit()
-    } else {
-        console.log('ERRORRRRR!!!')
-    }
-
+jQuery('button.post-filter').on('click', function() {
+    let query = jQuery(this).data('id')
+    let type = jQuery(this).data('type')
+    FilterPosts(query, type)
 })
 
-// Define all inputs as untouched and inherently not-valid.
-// Append inputs with status field & error message container.
-let inputs = $('input, textarea, select')
-        .not(':input[type=button], :input[type=submit], :input[type=reset]')
-jQuery(inputs).addClass('pristine not-valid').after('<span class="status"><i class="fa fa-times"></i><i class="fa fa-check"></i></span>')
+function NewPostsLayout() {
+    // Init Masonry
+    jQuery('#rest-container').masonry('reloadItems').masonry({
+        // options
+        itemSelector: '.post-card',
+        columnWidth: 320
+    }).on('layoutComplete', function() {
+        jQuery('main .shrink').removeClass('shrink')
+        jQuery('main').css('background-image', 'url()')
+    })
+}
 
-// Do stuff when an input is touched - this is where the magic happens!
-jQuery(inputs).on("keyup blur change", function(e) {
-    if (e.keyCode == 9) {
-        // keyCode 9 == 'tab'
-        // This prevents tabbing between fields triggering the validation
-        return
-    }
-
-    // check if a mandatory field has content
-    if (isRequired(e.currentTarget) == true) {
-        if (isEmpty(e.currentTarget) == true) {
-            makeInvalid(e.currentTarget)
-        } else {
-            makeValid(e.currentTarget)
-        }
+function FilterPosts(query, type) {
+    // How do we want to grab the data?
+    // Define your rules here
+    if (type == 'meta_key') {
+        var filter = "filter[meta_key]=post_count"
+        var order = 'meta_value_num&filter[order]=DESC'
     } else {
-        makeValid(e.currentTarget)
+        var filter = "filter[" + type + "]=" + query
+        var order = 'date'
     }
 
-    // if this is an email field
-    if (jQuery(e.currentTarget).attr('type') == 'email') {
-        if (isEmail(e.currentTarget) == true) {
-            makeValid(e.currentTarget)
-        } else {
-            makeInvalid(e.currentTarget)
+    // Show the user a loading icon. It gives no real idea of how long it'll take to load but studies show people enjoy this twirly placebo.
+    jQuery('main').css('background-image', 'url(https://d13yacurqjgara.cloudfront.net/users/82092/screenshots/1073359/spinner.gif)')
+
+    // Take every existing post on the page and hide it
+    jQuery('main article').each(function() {
+        jQuery(this).addClass('shrink')
+    })
+
+    // Do the magic to show the current nav item is...er...current
+    ActiveNavItem(query)
+
+    // Go get yo data
+    jQuery.ajax({
+        type: "GET",
+        url: url + filter + "&filter[orderby]=" + order + "&_embed&per_page=100",
+        dataType: "JSON",
+        success: function(data) {
+            // log for debug
+            console.log("endpoint:", url + filter + "&filter[orderby]=" + order + "&_embed&per_page=100");
+            console.log('load posts', data)
+
+            // Wipe the existing stuff
+            jQuery('main').html('')
+
+            // For each post returned...
+            jQuery.each(data, function(i, obj) {
+                // Whip up a tasty template
+                PostTemplate(data[i])
+
+                // When all of the tasty templates have been thoroughly whipped
+                if (i == (data.length - 1)) {
+                    // Shove them into your markup
+                    NewPostsLayout()
+                }
+
+            })
+
+
+
+            // end of success
+        },
+        complete: function() {
+
         }
-    }
-
-    // if this is a number field
-    if (jQuery(e.currentTarget).attr('type') == 'tel') {
-        if (isPhoneNumber(e.currentTarget)) {
-            makeValid(e.currentTarget)
-        } else {
-            makeInvalid(e.currentTarget)
-        }
-    }
-
-
-    if (jQuery(e.currentTarget).attr('type') == 'file') {
-        if (isFile(e.currentTarget)) {
-            makeValid(e.currentTarget)
-        } else {
-            makeInvalid(e.currentTarget)
-        }
-    }
-})
+    })
+}
 
 "use strict"
 
@@ -332,7 +281,11 @@ jQuery(inputs).on("keyup blur change", function(e) {
 jQuery(document).ready(function($) {
     LoadFunc() // Run the load page functions
 
-    $('body').litebochs()
+
+    jQuery('button[id^="load-"]').on('click', function(){
+      let target = jQuery(this).data('page')
+      loadPosts(target)
+    })
 
     // Events to trigger on window scroll
     var currentScroll = 0;

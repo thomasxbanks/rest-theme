@@ -97,6 +97,11 @@ article[class^="post-"] {
   @extend button;
   width: 100%;
   text-align: center;
+  font-size: 0;
+}
+
+.post-filter {
+  @include widthSibling;
 }
 
 .post-filter.is-active {

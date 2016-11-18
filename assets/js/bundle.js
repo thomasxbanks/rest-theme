@@ -194,9 +194,9 @@ function PostTemplate(post) {
     jQuery('main').append(postCard)
 }
 
-function ActiveNavItem(id) {
+function ActiveNavItem(name) {
     jQuery('.post-filter').removeClass('is-active')
-    jQuery('#' + id).addClass('is-active')
+    jQuery('[data-name="' + name + '"]').addClass('is-active')
 }
 
 jQuery('button.post-filter').on('click', function() {
@@ -237,7 +237,7 @@ function FilterPosts(query, type) {
     })
 
     // Do the magic to show the current nav item is...er...current
-    ActiveNavItem(query)
+    ActiveNavItem(jQuery('[data-id="'+query+'"]').data('name'))
 
     // Go get yo data
     jQuery.ajax({

@@ -195,8 +195,13 @@ function PostTemplate(post) {
 }
 
 function ActiveNavItem(name) {
-    jQuery('.post-filter').removeClass('is-active')
+    jQuery('.is-active').removeClass('is-active')
     jQuery('[data-name="' + name + '"]').addClass('is-active')
+    if (jQuery('.is-active').offsetParent()[0]['className'] == 'drop-down') {
+      let target = jQuery('.is-active').offsetParent()[0]
+      let parentLabel = jQuery(target)[0].previousElementSibling
+      jQuery(parentLabel).addClass('is-active')
+    }
 }
 
 jQuery('button.post-filter').on('click', function() {

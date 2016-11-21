@@ -17,7 +17,7 @@ button {
     background: $clr_brand;
     color: $clr_white;
     @extend .silvio;
-
+    line-height: $lh;
     &:hover {
         color: #fff;
         text-shadow: 0 0 4px #000;

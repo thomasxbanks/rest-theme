@@ -8,9 +8,8 @@
         <button data-name="popular" class="post-filter" data-type="meta_key" data-id="popular">Most Popular</button>
       </li>
       <li>
-        <span>Venue</span>
+        <span>Venues</span>
         <ul class="drop-down">
-          <li><button data-name="all-venues" class="post-filter" data-type="cat" data-id="15">All Venues</button></li>
           <li><button data-name="burton-green" class="post-filter" data-type="cat" data-id="2">Burton Green</button></li>
           <li><button data-name="chester" class="post-filter" data-type="cat" data-id="3">Chester</button></li>
           <li><button data-name="rhos-on-sea" class="post-filter" data-type="cat" data-id="5">Rhos on Sea</button></li>

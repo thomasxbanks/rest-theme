@@ -106,14 +106,11 @@ article[class^="post-"] {
     text-align: center;
     font-size: 0;
 
-    .post-filter {
+    .post-filter, ul > li > span {
         width: 100%;
         transition: box-shadow $ease-main $speed-fast;
-        &.is-active {
+        &.is-active, &:hover {
             box-shadow: inset 0 -4px 0 lighten($clr_brand, 90%);
-        }
-        &:hover {
-          box-shadow: inset 0 -2px 0 lighten($clr_brand, 90%);
         }
     }
 

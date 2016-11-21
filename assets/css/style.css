@@ -194,7 +194,8 @@ button, .button, form input[type="submit"], form input[type="reset"], form input
   padding: 10px 20px;
   margin: 10px 0;
   background: maroon;
-  color: #fff; }
+  color: #fff;
+  line-height: 1.7; }
   button:hover, .button:hover, form input[type="submit"]:hover, form input[type="reset"]:hover, form input[type="button"]:hover, #post-filter-container:hover, #post-filter-container ul.list-hz > li > span:hover {
     color: #fff;
     text-shadow: 0 0 4px #000;
@@ -291,13 +292,11 @@ article[class^="post-"] {
   width: 100%;
   text-align: center;
   font-size: 0; }
-  #post-filter-container .post-filter {
+  #post-filter-container .post-filter, #post-filter-container ul > li > span {
     width: 100%;
     transition: box-shadow cubic-bezier(0.66, 0.04, 0.51, 0.92) 250ms; }
-    #post-filter-container .post-filter.is-active {
+    #post-filter-container .post-filter.is-active, #post-filter-container .post-filter:hover, #post-filter-container ul > li > span.is-active, #post-filter-container ul > li > span:hover {
       box-shadow: inset 0 -4px 0 white; }
-    #post-filter-container .post-filter:hover {
-      box-shadow: inset 0 -2px 0 white; }
   #post-filter-container ul.list-hz {
     display: block;
     width: 50%;

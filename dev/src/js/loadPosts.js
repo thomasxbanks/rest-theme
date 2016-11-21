@@ -54,7 +54,7 @@ function FilterPosts(query, type) {
     }
 
     // Show the user a loading icon. It gives no real idea of how long it'll take to load but studies show people enjoy this twirly placebo.
-    jQuery('main').css('background-image', 'url(https://d13yacurqjgara.cloudfront.net/users/82092/screenshots/1073359/spinner.gif)')
+    jQuery('main').css('background-image', 'url(http://www.act-b7.co.il/application/assets/img/default/loading.gif)')
 
     // Take every existing post on the page and hide it
     jQuery('main article').each(function() {
